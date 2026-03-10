@@ -75,8 +75,8 @@ class User(BaseModel):
         if value is None:
             return value
 
-        if value not in set(['None', 'Parody', 'Commentary']):
-            raise ValueError("must be one of enum values ('None', 'Parody', 'Commentary')")
+        if value not in set(['None', 'Parody', 'Commentary', 'Fan']):
+            raise ValueError("must be one of enum values ('None', 'Parody', 'Commentary', 'Fan')")
         return value
 
     @field_validator('profile_image_shape')
