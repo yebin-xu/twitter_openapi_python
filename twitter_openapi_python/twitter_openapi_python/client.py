@@ -123,10 +123,11 @@ class TwitterOpenapiPython:
     def get_twitter_openapi_python_client(
         self,
         api: twitter.ApiClient,
+        cookies: dict[str, str] | None = None,
     ) -> TwitterOpenapiPythonClient:
         http = urllib3.PoolManager()
         flag = http.request("GET", self.placeholder_url.format(hash=self.hash))
-        ct = get_tid()
+        ct = get_tid(cookies)
         return TwitterOpenapiPythonClient(api, json.loads(flag.data), ct)
 
     def get_client_from_cookies(
@@ -149,7 +150,7 @@ class TwitterOpenapiPython:
             cookie=self.cookie_to_str(cookies),
         )
         api_client.user_agent = api_key["UserAgent"]
-        return self.get_twitter_openapi_python_client(api_client)
+        return self.get_twitter_openapi_python_client(api_client, cookies)
 
     def get_guest_client(self) -> TwitterOpenapiPythonClient:
         http = urllib3.PoolManager()
