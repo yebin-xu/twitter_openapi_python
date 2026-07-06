@@ -31,7 +31,7 @@ class ArticleResult(BaseModel):
     """
     ArticleResult
     """ # noqa: E501
-    cover_media: ArticleCoverMedia
+    cover_media: Optional[ArticleCoverMedia] = None
     id: StrictStr
     lifecycle_state: Optional[ArticleLifecycleState] = None
     metadata: ArticleMetadata
